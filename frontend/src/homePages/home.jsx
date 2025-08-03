@@ -87,27 +87,7 @@ function Navbar() {
 
       < ElectronicsCategories />
 
-      {/* <section className="flex justify-center mt-12 px-4">
-        <div className="w-full max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
-          <img
-            src="./src/images/image1.webp"
-            alt="Smartphone"
-            className="w-full h-48 object-cover"
-          />
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800">Smartphone Pro Max</h3>
-            <p className="text-sm text-gray-600 mt-2">
-              Latest model with high-end features. Great performance and camera.
-            </p>
-            <div className="flex justify-between items-center mt-4">
-              <span className="text-green-600 font-bold text-lg">$799.99</span>
-              <button className="bg-[#2874f0] text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section> */}
+     
       <AllProductsSection/>
 
       <Footer />
