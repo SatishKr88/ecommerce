@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import SimpleSlider from "./slide";
 
-
-
-
-
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <>
-
-      <header className="bg-[#2874f0] shadow-md text-white ">
-        <nav className="flex justify-between items-center px-6 py-3 max-w-screen-xl mx-auto">
-
-          <div className="text-2xl font-extrabold">
-            <a href="/" className="flex items-center space-x-4 group">
-              {/* Logo Icon with glow and gradient */}
-              <div className="bg-gradient-to-br from-blue-600 to-cyan-500 text-white p-3 rounded-full shadow-lg group-hover:from-blue-700 group-hover:to-cyan-600 transition duration-300">
+      <header className="bg-[#2874f0] text-white shadow-lg w-full fixed z-50">
+        <nav className="flex items-center justify-between px-4 py-3 max-w-screen-xl mx-auto flex-wrap">
+          
+          {/* Logo Section */}
+          <div className="flex items-center space-x-4">
+            <a href="/" className="flex items-center group space-x-2">
+              <div className="bg-gradient-to-br from-blue-600 to-cyan-500 text-white p-2 rounded-full shadow-md group-hover:scale-110 transition duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -31,70 +28,75 @@ function Navbar() {
                   />
                 </svg>
               </div>
-
-              {/* Brand Text */}
-              <div className="flex flex-col leading-tight">
-                <span className="text-white text-[1.7rem] font-semibold tracking-wide group-hover:text-cyan-300 transition">
+              <div className="leading-tight">
+                <span className="text-[1.6rem] font-bold tracking-wide group-hover:text-cyan-200 transition">
                   Rishi
                 </span>
-                <span className="text-blue-200 text-sm tracking-widest uppercase">
-                  Electronics Hub
-                </span>
+                <p className="text-sm text-blue-200 tracking-wider uppercase">Electronics Hub</p>
               </div>
             </a>
           </div>
 
-          <div className="flex-1 mx-6">
-            <div className="relative">
+          {/* Hamburger Button */}
+          <button
+            className="text-white md:hidden text-2xl focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <i className="fas fa-bars" />
+          </button>
 
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
-                  />
-                </svg>
+          {/* Navigation Items */}
+          <div className={`w-full md:flex md:items-center md:justify-between md:w-auto ${isMenuOpen ? 'block' : 'hidden'} mt-4 md:mt-0`}>
+            
+            {/* Search Bar */}
+            <div className="w-full md:w-[400px] px-2 md:px-4 mb-4 md:mb-0">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-3 flex items-center text-white">
+                  <i className="fas fa-search text-white/70"></i>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search for products, brands, and more"
+                  className="w-full pl-10 pr-4 py-2 rounded-lg bg-white/20 backdrop-blur-md text-white placeholder-white/70 border border-white/30 shadow-inner focus:outline-none focus:ring-2 focus:ring-yellow-300 transition"
+                />
               </div>
-              <input
-                type="text"
-                placeholder="Search for products, brands, and more"
-                className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              />
             </div>
-          </div>
 
-          <div className="flex items-center space-x-6 text-sm font-medium">
-            <a href="/login" className="hover:underline">Login</a>
-            <a href="/cart" className="relative flex items-center space-x-1">
-              <span className="material-icons text-white"><i class="fa-solid fa-cart-shopping"></i></span>
-              <span>Cart</span>
-              <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs rounded-full px-1">2</span>
-            </a>
-            <a href="/contact" className="hover:underline">Contact</a>
+            {/* Links */}
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-6 text-sm font-medium space-y-2 md:space-y-0 px-2 md:px-0">
+              {/* Login with Icon */}
+              <a href="/login" className="flex items-center space-x-1  hover:text-yellow-200 transition">
+                <i className="fas fa-user"></i>
+                <span>Login</span>
+              </a>
+
+              {/* Cart */}
+              <a href="/cart" className="relative flex items-center space-x-1 hover:text-yellow-300 transition">
+                <i className="fa-solid fa-cart-shopping text-lg"></i>
+                <span>Cart</span>
+                <span className="absolute -top-2 -right-3 bg-yellow-400 text-black text-xs rounded-full px-1.5 animate-bounce">
+                  2
+                </span>
+              </a>
+
+              {/* Contact with Icon */}
+              <a href="/contact" className="flex items-center space-x-1  px-2 py-1 rounded hover:text-yellow-200 transition">
+                 <i className="fas fa-phone"></i>
+                <span>Contact</span>
+              </a>
+            </div>
           </div>
         </nav>
       </header>
 
+      {/* Sections */}
       <SimpleSlider />
-
-      < ElectronicsCategories />
-
-     
-      <AllProductsSection/>
-
+      <ElectronicsCategories />
+      <AllProductsSection />
       <Footer />
     </>
   );
 }
-
 
 
 
@@ -116,13 +118,13 @@ function ElectronicsCategories() {
 
   const categories = [
     { name: "Mobile Phones", icon: "📱" },
-    { name: "Laptops", icon: "💻" },
-    { name: "Cameras", icon: "📷" },
+    // { name: "Laptops", icon: "💻" },
+    // { name: "Cameras", icon: "📷" },
     { name: "Headphones", icon: "🎧" },
-    { name: "Wired Earphones", icon: "🎧" },
+    // { name: "Wired Earphones", icon: "🎧" },
     { name: "Smart Watches", icon: "⌚" },
     { name: "TV & Appliances", icon: "📺" },
-    { name: "Gaming Consoles", icon: "🎮" },
+    // { name: "Gaming Consoles", icon: "🎮" },
     { name: "Speakers", icon: "🔊" },
     { name: "Refrigerator", icon: fridgeIcon },
   ];
@@ -148,8 +150,6 @@ function ElectronicsCategories() {
   );
 }
 
-
-
 function ProductCard({ image, title, description, price }) {
   return (
     <div className="border border-gray-200 rounded-md overflow-hidden bg-white hover:shadow-md transition duration-200 flex flex-col">
@@ -174,8 +174,6 @@ function ProductCard({ image, title, description, price }) {
     </div>
   );
 }
-
-
 
 
 function AllProductsSection() {
@@ -247,9 +245,6 @@ function AllProductsSection() {
     </section>
   );
 }
-
-
-
 
 
 
