@@ -57,7 +57,7 @@ function SimpleSlider() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: true,
+         
         },
       },
       {
@@ -65,7 +65,7 @@ function SimpleSlider() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: true,
+          
         },
       },
     ],
