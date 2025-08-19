@@ -89,7 +89,7 @@ function Navbar() {
         </nav>
       </header>
 
-      {/* Sections */}
+      
       <SimpleSlider />
       <ElectronicsCategories />
       <AllProductsSection />
