@@ -75,25 +75,33 @@ function SimpleSlider() {
     <div className="slider-container w-full max-w-7xl mx-auto relative top-19">
       <Slider {...settings}>
         <div>
+          <a href="/img1">
           <img
+           
             src={image1}
             alt="Image 1"
             className="w-full h-auto object-cover "
+           
           />
+          </a>
         </div>
         <div>
+          <a href="img2">
           <img
             src={image2}
             alt="Image 2"
             className="w-full h-auto object-cover "
           />
+          </a>
         </div>
         <div>
+          <a href="img3">
           <img
             src={image3}
             alt="Image 3"
             className="w-full h-auto object-cover "
           />
+          </a>
         </div>
       </Slider>
     </div>
