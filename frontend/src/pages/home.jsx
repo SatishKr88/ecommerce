@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SimpleSlider from "./slide";
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,8 +9,8 @@ function Navbar() {
     <>
       <header className="bg-[#2874f0] text-white shadow-lg w-full fixed z-50">
         <nav className="flex items-center justify-between px-4 py-3 max-w-screen-xl mx-auto flex-wrap">
-          
-          {/* Logo Section */}
+
+
           <div className="flex items-center space-x-4">
             <a href="/" className="flex items-center group space-x-2">
               <div className="bg-gradient-to-br from-blue-600 to-cyan-500 text-white p-2 rounded-full shadow-md group-hover:scale-110 transition duration-300">
@@ -37,7 +38,7 @@ function Navbar() {
             </a>
           </div>
 
-          {/* Hamburger Button */}
+
           <button
             className="text-white md:hidden text-2xl focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -45,10 +46,10 @@ function Navbar() {
             <i className="fas fa-bars" />
           </button>
 
-          {/* Navigation Items */}
+
           <div className={`w-full md:flex md:items-center md:justify-between md:w-auto ${isMenuOpen ? 'block' : 'hidden'} mt-4 md:mt-0`}>
-            
-            {/* Search Bar */}
+
+
             <div className="w-full md:w-[400px] px-2 md:px-4 mb-4 md:mb-0">
               <div className="relative">
                 <div className="absolute inset-y-0 left-3 flex items-center text-white">
@@ -62,15 +63,15 @@ function Navbar() {
               </div>
             </div>
 
-            {/* Links */}
+
             <div className="flex flex-col md:flex-row md:items-center md:space-x-6 text-sm font-medium space-y-2 md:space-y-0 px-2 md:px-0">
-              {/* Login with Icon */}
+
               <a href="/login" className="flex items-center space-x-1  hover:text-yellow-200 transition">
                 <i className="fas fa-user"></i>
                 <span>Login</span>
               </a>
 
-              {/* Cart */}
+
               <a href="/cart" className="relative flex items-center space-x-1 hover:text-yellow-300 transition">
                 <i className="fa-solid fa-cart-shopping text-lg"></i>
                 <span>Cart</span>
@@ -79,9 +80,9 @@ function Navbar() {
                 </span>
               </a>
 
-              {/* Contact with Icon */}
+
               <a href="/contact" className="flex items-center space-x-1  px-2 py-1 rounded hover:text-yellow-200 transition">
-                 <i className="fas fa-phone"></i>
+                <i className="fas fa-phone"></i>
                 <span>Contact</span>
               </a>
             </div>
@@ -89,7 +90,7 @@ function Navbar() {
         </nav>
       </header>
 
-      
+
       <SimpleSlider />
       <ElectronicsCategories />
       <AllProductsSection />
@@ -97,8 +98,6 @@ function Navbar() {
     </>
   );
 }
-
-
 
 function ElectronicsCategories() {
   const fridgeIcon = (
@@ -150,9 +149,10 @@ function ElectronicsCategories() {
   );
 }
 
-function ProductCard({ image, title, description, price }) {
+function ProductCard({ image, title, description, price, onClick }) {
   return (
-    <div className="border border-gray-200 rounded-md overflow-hidden bg-white hover:shadow-md transition duration-200 flex flex-col">
+
+    <div onClick={onClick} className="border border-gray-200 rounded-md overflow-hidden bg-white hover:shadow-md transition duration-200 flex flex-col">
       <div className="bg-white p-4">
         <img
           src={image}
@@ -166,17 +166,32 @@ function ProductCard({ image, title, description, price }) {
 
         <div className="flex justify-between items-center mt-auto pt-4">
           <span className="text-lg font-semibold text-green-600">₹{price}</span>
-          <button className="border border-[#2874f0] text-[#2874f0] px-3 py-1 rounded text-sm hover:bg-[#2874f0] hover:text-white transition">
+          <button onClick={(e) => {
+            e.stopPropagation();
+
+          }}
+            className="border border-[#2874f0] text-[#2874f0] px-3 py-1 rounded text-sm hover:bg-[#f02828] hover:text-white transition">
             <i className="fa-solid fa-cart-shopping mr-2"></i> Add
+          </button>
+          <button onClick={(e) => {
+            e.stopPropagation();
+
+          }}
+            className="border border-[#2874f0] text-[#2874f0] px-3 py-1 rounded text-sm hover:bg-[#2874f0] hover:text-white transition">
+            <i className="fa-solid fa-bag-shopping mr-2"></i> Buy
           </button>
         </div>
       </div>
     </div>
+
   );
 }
 
-
 function AllProductsSection() {
+  const navigate = useNavigate();
+  const handleProductClick = (productId) => {
+    navigate(`/products/${productId}`);
+  };
   const products = [
     {
       title: "Smartphone Pro Max",
@@ -232,9 +247,9 @@ function AllProductsSection() {
     <section className="px-6 py-12 bg-gray-100">
       <h2 className="text-xl font-semibold text-gray-800 mb-6">Our Products</h2>
       <div className="max-w-screen-xl mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {products.map((product, index) => (
+        {products.map((product) => (
           <ProductCard
-            key={index}
+            key={product.id} onClick={() => handleProductClick(product.id)}
             image={product.image}
             title={product.title}
             description={product.description}
@@ -245,8 +260,6 @@ function AllProductsSection() {
     </section>
   );
 }
-
-
 
 function Footer() {
   return (
@@ -337,12 +350,10 @@ function Footer() {
   );
 }
 
-
 function HomePage() {
   return (
     <>
       <Navbar />
-
     </>
   )
 }
