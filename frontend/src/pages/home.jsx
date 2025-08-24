@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SimpleSlider from "./slide";
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -189,53 +190,62 @@ function ProductCard({ image, title, description, price, onClick }) {
 
 function AllProductsSection() {
   const navigate = useNavigate();
-  const handleProductClick = (productId) => {
-    navigate(`/products/${productId}`);
+  const handleProductClick = (product) => {
+    navigate(`/products/${product.id}`, { state: { product } });
   };
+
   const products = [
     {
+      id: 1,
       title: "Smartphone Pro Max",
       image: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/c/y/-original-imahaff2rbuykhcw.jpeg?q=70",
       description: "Latest model with high-end features. Great performance and camera.",
       price: "79999",
     },
     {
+      id: 2,
       title: "Laptop Ultra Slim",
       image: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/c/y/-original-imahaff2rbuykhcw.jpeg?q=70",
       description: "Lightweight and powerful laptop for professionals.",
       price: "119900",
     },
     {
+      id: 3,
       title: "Wireless Headphones",
       image: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/c/y/-original-imahaff2rbuykhcw.jpeg?q=70",
       description: "Comfortable and noise-canceling over-ear headphones.",
       price: "1999",
     },
     {
+      id: 4,
       title: "4K Smart TV",
       image: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/c/y/-original-imahaff2rbuykhcw.jpeg?q=70",
       description: "Experience entertainment with stunning visuals and sound.",
       price: "99999",
     },
     {
+      id: 5,
       title: "Gaming Console X",
       image: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/c/y/-original-imahaff2rbuykhcw.jpeg?q=70",
       description: "Next-gen gaming console with 4K support and fast loading.",
       price: "49900",
     },
     {
+      id: 6,
       title: "Bluetooth Speaker",
       image: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/c/y/-original-imahaff2rbuykhcw.jpeg?q=70",
       description: "Portable speaker with powerful bass and long battery life.",
       price: "899",
     },
     {
+      id: 7,
       title: "DSLR Camera",
       image: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/c/y/-original-imahaff2rbuykhcw.jpeg?q=70",
       description: "Capture moments in high resolution with this DSLR camera.",
       price: "134900",
     },
     {
+      id: 18,
       title: "Smartwatch 2.0",
       image: "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/t/c/y/-original-imahaff2rbuykhcw.jpeg?q=70",
       description: "Fitness tracking, notifications, and more — on your wrist.",
@@ -249,7 +259,8 @@ function AllProductsSection() {
       <div className="max-w-screen-xl mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
           <ProductCard
-            key={product.id} onClick={() => handleProductClick(product.id)}
+            key={product.id}
+            onClick={() => handleProductClick(product)}
             image={product.image}
             title={product.title}
             description={product.description}
