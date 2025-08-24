@@ -1,104 +1,7 @@
-import React, { useState } from "react";
+import Navbar from "./navbar";
 import SimpleSlider from "./slide";
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-
-function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  return (
-    <>
-      <header className="bg-[#2874f0] text-white shadow-lg w-full fixed z-50">
-        <nav className="flex items-center justify-between px-4 py-3 max-w-screen-xl mx-auto flex-wrap">
-
-
-          <div className="flex items-center space-x-4">
-            <a href="/" className="flex items-center group space-x-2">
-              <div className="bg-gradient-to-br from-blue-600 to-cyan-500 text-white p-2 rounded-full shadow-md group-hover:scale-110 transition duration-300">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <div className="leading-tight">
-                <span className="text-[1.6rem] font-bold tracking-wide group-hover:text-cyan-200 transition">
-                  Rishi
-                </span>
-                <p className="text-sm text-blue-200 tracking-wider uppercase">Electronics Hub</p>
-              </div>
-            </a>
-          </div>
-
-
-          <button
-            className="text-white md:hidden text-2xl focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <i className="fas fa-bars" />
-          </button>
-
-
-          <div className={`w-full md:flex md:items-center md:justify-between md:w-auto ${isMenuOpen ? 'block' : 'hidden'} mt-4 md:mt-0`}>
-
-
-            <div className="w-full md:w-[400px] px-2 md:px-4 mb-4 md:mb-0">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-3 flex items-center text-white">
-                  <i className="fas fa-search text-white/70"></i>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search for products, brands, and more"
-                  className="w-full pl-10 pr-4 py-2 rounded-lg bg-white/20 backdrop-blur-md text-white placeholder-white/70 border border-white/30 shadow-inner focus:outline-none focus:ring-2 focus:ring-yellow-300 transition"
-                />
-              </div>
-            </div>
-
-
-            <div className="flex flex-col md:flex-row md:items-center md:space-x-6 text-sm font-medium space-y-2 md:space-y-0 px-2 md:px-0">
-
-              <a href="/login" className="flex items-center space-x-1  hover:text-yellow-200 transition">
-                <i className="fas fa-user"></i>
-                <span>Login</span>
-              </a>
-
-
-              <a href="/cart" className="relative flex items-center space-x-1 hover:text-yellow-300 transition">
-                <i className="fa-solid fa-cart-shopping text-lg"></i>
-                <span>Cart</span>
-                <span className="absolute -top-2 -right-3 bg-yellow-400 text-black text-xs rounded-full px-1.5 animate-bounce">
-                  2
-                </span>
-              </a>
-
-
-              <a href="/contact" className="flex items-center space-x-1  px-2 py-1 rounded hover:text-yellow-200 transition">
-                <i className="fas fa-phone"></i>
-                <span>Contact</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-      </header>
-
-
-      <SimpleSlider />
-      <ElectronicsCategories />
-      <AllProductsSection />
-      <Footer />
-    </>
-  );
-}
+import Footer from "./footer";
 
 function ElectronicsCategories() {
   const fridgeIcon = (
@@ -272,99 +175,16 @@ function AllProductsSection() {
   );
 }
 
-function Footer() {
-  return (
-    <>
-      <footer className="bg-[#1b4da8] text-white mt-16">
-        <div className="max-w-screen-xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-5 gap-8">
 
-          <div className="md:col-span-1">
-            <h4 className="text-lg font-semibold mb-3">Rishi Electronics</h4>
-            <p className="text-sm text-gray-300">
-              Your one-stop shop for the latest in electronics. Top brands, great deals, and fast delivery — every time.
-            </p>
-          </div>
-
-
-          <div>
-            <h4 className="text-lg font-semibold mb-3">Customer Care</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li><a href="/help" className="hover:text-white transition">Help Center</a></li>
-              <li><a href="/returns" className="hover:text-white transition">Returns & Refunds</a></li>
-              <li><a href="/shipping" className="hover:text-white transition">Shipping Info</a></li>
-              <li><a href="/warranty" className="hover:text-white transition">Warranty Policy</a></li>
-            </ul>
-          </div>
-
-
-          <div>
-            <h4 className="text-lg font-semibold mb-3">Top Categories</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li><a href="/smartphones" className="hover:text-white transition">Smartphones</a></li>
-              <li><a href="/laptops" className="hover:text-white transition">Laptops</a></li>
-              <li><a href="/accessories" className="hover:text-white transition">Accessories</a></li>
-              <li><a href="/tv" className="hover:text-white transition">Televisions</a></li>
-            </ul>
-          </div>
-
-
-          <div>
-            <h4 className="text-lg font-semibold mb-3">Contact Us</h4>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-center space-x-2">
-                <i className="fas fa-phone"></i>
-                <a href="tel:+918292901505" className="hover:underline">+91 8292901505</a>
-              </li>
-              <li className="flex items-center space-x-2">
-                <i className="fas fa-envelope"></i>
-                <span>rishielectronic@gmail.com</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <a
-                  href="https://www.google.com/maps?q=25.934372906803265,85.02351432241963"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 hover:underline"
-                >
-                  <i className="fas fa-map-marker-alt"></i>
-                  <span>Anjani, Bihar, India</span>
-                </a>
-              </li>
-
-            </ul>
-          </div>
-
-
-          <div className="md:col-span-1">
-            <h4 className="text-lg font-semibold mb-3">Find Us</h4>
-            <div className="rounded overflow-hidden shadow-lg">
-              <iframe
-                title="Rishi Electronics Location"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3603.274770692159!2d85.02351432241963!3d25.934372906803265!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDU2JzAzLjgiTiA4NcKwMDEnMjQuNiJF!5e0!3m2!1sen!2sin!4v1691284100000!5m2!1sen!2sin"
-                width="100%"
-                height="160"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="border-t border-blue-600 mt-6 py-4 text-center text-sm text-gray-300">
-          © {new Date().getFullYear()} Rishi Electronics. All rights reserved.
-        </div>
-      </footer>
-    </>
-  );
-}
 
 function HomePage() {
   return (
     <>
       <Navbar />
+      <SimpleSlider />
+      <ElectronicsCategories />
+      <AllProductsSection />
+      <Footer />
     </>
   )
 }
