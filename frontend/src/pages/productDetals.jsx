@@ -29,7 +29,7 @@ const ProductDetail = () => {
             </button>
           </div>
 
-          <div className=' absolute left-[30%] ' >
+          <div className=' absolute lg:left-[30%] top-[52%] ml-5 lg:top-auto ' >
             <h1 className='font-bold'>{product.title}</h1>
             <p>{product.description}</p>
             <p>₹{product.price}</p>
