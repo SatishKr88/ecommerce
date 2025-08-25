@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+const itemstore = JSON.parse(localStorage.getItem('cart'))?.length || 0;
 
   return (
     <>
       <header className="bg-[#2874f0] text-white shadow-lg w-full fixed z-50">
         <nav className="flex items-center justify-between px-4 py-3 max-w-screen-xl mx-auto flex-wrap">
-
-
           <div className="flex items-center space-x-4">
             <a href="/" className="flex items-center group space-x-2">
               <div className="bg-gradient-to-br from-blue-600 to-cyan-500 text-white p-2 rounded-full shadow-md group-hover:scale-110 transition duration-300">
@@ -73,7 +72,7 @@ function Navbar() {
                 <i className="fa-solid fa-cart-shopping text-lg"></i>
                 <span>Cart</span>
                 <span className="absolute -top-2 -right-3 bg-yellow-400 text-black text-xs rounded-full px-1.5 animate-bounce">
-                  2
+                  {itemstore}
                 </span>
               </a>
 

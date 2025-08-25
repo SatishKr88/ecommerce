@@ -54,6 +54,7 @@ function ElectronicsCategories() {
 }
 
 function ProductCard({ image, title, description, price, onClick }) {
+  
   return (
 
     <div onClick={onClick} className="border border-gray-200 rounded-md overflow-hidden bg-white hover:shadow-md transition duration-200 flex flex-col">
@@ -72,14 +73,19 @@ function ProductCard({ image, title, description, price, onClick }) {
           <span className="text-lg font-semibold text-green-600">₹{price}</span>
           <button onClick={(e) => {
             e.stopPropagation();
-
+            const newItem = { image, title, description, price };
+            const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+            const isItemInCart = existingCart.some(item => item.title === newItem.title);
+            if (!isItemInCart) {
+              existingCart.push(newItem);
+            }
+            localStorage.setItem('cart', JSON.stringify(existingCart));
           }}
             className="border border-[#2874f0] text-[#2874f0] px-3 py-1 rounded text-sm hover:bg-[#f02828] hover:text-white transition">
             <i className="fa-solid fa-cart-shopping mr-2"></i> Add
           </button>
           <button onClick={(e) => {
             e.stopPropagation();
-
           }}
             className="border border-[#2874f0] text-[#2874f0] px-3 py-1 rounded text-sm hover:bg-[#2874f0] hover:text-white transition">
             <i className="fa-solid fa-bag-shopping mr-2"></i> Buy
@@ -87,7 +93,6 @@ function ProductCard({ image, title, description, price, onClick }) {
         </div>
       </div>
     </div>
-
   );
 }
 
@@ -174,8 +179,6 @@ function AllProductsSection() {
     </section>
   );
 }
-
-
 
 function HomePage() {
   return (
