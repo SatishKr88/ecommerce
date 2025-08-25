@@ -29,10 +29,10 @@ const ProductDetail = () => {
             </button>
           </div>
 
-          <div className=' absolute lg:left-[30%] top-[52%] ml-5 lg:top-auto ' >
+          <div className=' absolute lg:left-[30%] top-[52%] ml-6 lg:top-auto ' >
             <h1 className='font-bold'>{product.title}</h1>
             <p>{product.description}</p>
-            <p>₹{product.price}</p>
+            <p className='text-lg font-semibold text-green-600'>₹{product.price}</p>
           </div>
         </div>
 
